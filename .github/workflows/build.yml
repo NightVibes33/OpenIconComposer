@@ -1,0 +1,15 @@
+name: CI Build
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Project
+        run: |
+          xcodebuild -project OpenIconComposer.xcodeproj -scheme OpenIconComposer -sdk iphoneos CODE_SIGNING_ALLOWED=NO AD_HOC_CODE_SIGNING_ALLOWED=YES
